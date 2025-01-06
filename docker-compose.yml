@@ -31,4 +31,4 @@ services:
 
 volumes:
   static_volume:
-  pgdata:
+  # pgdata:
