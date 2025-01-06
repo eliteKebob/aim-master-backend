@@ -22,8 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls')),
+    path('user/', include('users.urls')),
     path('score/', include('scores.urls')),
-    re_path('', TemplateView.as_view(template_name="index.html")),
-    # r'^.*$'
+    re_path(r'^.*$', TemplateView.as_view(template_name="index.html")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

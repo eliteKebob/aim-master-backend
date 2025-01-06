@@ -24,9 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_$!))l&c+szeh$tf%$$c&dj7mk9r)r706uto)bca=^j&q46_xq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['13.51.162.175']
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['13.51.162.175']
 
 
 # Application definition
@@ -93,12 +96,34 @@ WSGI_APPLICATION = 'aim.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': 'localhost' if DEBUG else os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': "aim_master",
+#         'USER': "root",
+#         'PASSWORD': "OvLB6Xxl14lwiFR",
+#         'HOST': "localhost",
+#         'PORT': "5432",
+#     }
+# }
 
 
 # Password validation
