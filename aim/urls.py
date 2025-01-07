@@ -24,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('users.urls')),
     path('score/', include('scores.urls')),
-    re_path(r'^.*$', TemplateView.as_view(template_name="index.html")),
+    re_path(r'^(?!admin/).*$', TemplateView.as_view(template_name="index.html")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
