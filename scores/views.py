@@ -1,5 +1,4 @@
 import json
-import datetime
 import logging
 
 from collections import Counter
@@ -9,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from utils.dt import now_tz_offset, humanize_date
-from .models import *
+from .models import Score
 
 LOGGER = logging.getLogger(__name__)
 SECS_PER_MIN = 60
