@@ -59,10 +59,10 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=90),  
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=180),    
-    'ROTATE_REFRESH_TOKENS': True,                 
-    'BLACKLIST_AFTER_ROTATION': True,   
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=90),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=180),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
 }
 
 MIDDLEWARE = [
@@ -183,4 +183,3 @@ LOGGING = {
         },
     },
 }
-

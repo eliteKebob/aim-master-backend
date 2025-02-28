@@ -26,7 +26,8 @@ class ChartParser(object):
             1 for item in self.scores if item['mode'] == mode)), set(item['mode'] for item in self.scores)))
         for mode_count in mode_counts.keys():
             self.data.append({"chart_type": self.chart_type,
-                              "count": mode_counts[mode_count], "indicator": "challenge_game_count" if mode_count == "C" else "chill_game_count"})
+                              "count": mode_counts[mode_count],
+                              "indicator": "challenge_game_count" if mode_count == "C" else "chill_game_count"})
         total_seconds = sum(score["game_length"] for score in self.scores)
         average_spm = sum(score["target_hit"]
                           for score in self.scores) / (total_seconds / SECS_PER_MIN)
@@ -133,8 +134,10 @@ class ScoreView(APIView):
         try:
             user = request.user
             date = now_tz_offset(request.data.get("tz_offset"))
-            entity = Score(user=user, date=date, game_length=request.data.get("game_length"), target_size=request.data.get(
-                "target_size"), total_target=request.data.get("total_target"), target_hit=request.data.get("target_hit"), mode=request.data.get("mode"))
+            entity = Score(user=user, date=date, game_length=request.data.get("game_length"),
+                           target_size=request.data.get("target_size"), total_target=request.data.get("total_target"),
+                           target_hit=request.data.get("target_hit"), mode=request.data.get("mode"),
+                           sensitivity=request.data.get("sensitivity"), is_click=request.data.get("is_click"))
             entity.save()
             LOGGER.info("%s posts score: %s" % (user.username, request.data))
             return Response({"message": f"Hello, {user.username}!"}, status=status.HTTP_200_OK)
